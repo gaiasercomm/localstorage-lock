@@ -25,7 +25,7 @@ export function runWithLock(key, fn, { timeout=1000, lockWriteTime=50, checkTime
   setTimeout(() => {
     const currentResult = localStorage.getItem(key);
     const data = JSON.parse(currentResult);
-    if (data !== null && data.id !== id) {
+    if (data === null || data.id !== id) {
       if (retry) {
         timerRunWithLock();
       }
